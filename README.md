@@ -8,7 +8,7 @@ L'admin peut insérer un ou plusieurs ( limité sur 2 ou plus ) article en même
 L'admin peut visualiser les statistiques : nombre des articles, nombre des utilisateurs, nombre des écrivains.  
 L'admin peut rechercher sur des articles (stack ou catégorie par exemple) et faire le tri. 
 
-##Exigences Technologiques :  
+## Exigences Technologiques :  
 ********************************************************
 ***Concepts: Responsivité, POO***  
 **Conception et modélisation: **UML (diagramme de classe et usecase)  
