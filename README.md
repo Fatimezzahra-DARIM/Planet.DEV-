@@ -1,12 +1,12 @@
 # Planet.DEV-
 ## Exigences Fonctionnelles : 
 *******************************************************
-***Authentification au dashboard.*** 
+***Authentification au dashboard.***    
 Lors de l'authentification il faut vérifier et valider les formulaires.  
-L'admin peut ajouter, modifier et supprimer les articles. 
-L'admin peut insérer un ou plusieurs ( limité sur 2 ou plus ) article en même temps. (Dynamic form) (Full dynamic form optionnel). 
-L'admin peut visualiser les statistiques : nombre des articles, nombre des utilisateurs, nombre des écrivains.  
-L'admin peut rechercher sur des articles (stack ou catégorie par exemple) et faire le tri. 
+-L'admin peut ajouter, modifier et supprimer les articles. 
+-L'admin peut insérer un ou plusieurs ( limité sur 2 ou plus ) article en même temps. (Dynamic form) (Full dynamic form optionnel). 
+-L'admin peut visualiser les statistiques : nombre des articles, nombre des utilisateurs, nombre des écrivains.  
+-L'admin peut rechercher sur des articles (stack ou catégorie par exemple) et faire le tri. 
 
 ## Exigences Technologiques :  
 ********************************************************
