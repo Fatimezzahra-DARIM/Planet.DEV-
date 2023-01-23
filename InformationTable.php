@@ -26,13 +26,14 @@ session_start();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <!-- icon-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.css" integrity="sha512-c0+vSv9tnGS4fzwTIBFPcdCZ0QwP+aTePvZeAJkYpbj67KvQ5+VrJjDh3lil48LILJxhICQf66dQ8t/BJyOo/g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
 
     <!--google material icon-->
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+
+    <!--Data table links-->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
+    <!-- icon-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.css" integrity="sha512-c0+vSv9tnGS4fzwTIBFPcdCZ0QwP+aTePvZeAJkYpbj67KvQ5+VrJjDh3lil48LILJxhICQf66dQ8t/BJyOo/g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -56,8 +57,9 @@ session_start();
                     <a href="#" class="dashboard"><i class="material-icons">dashboard</i><span>Dashboard</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="./InformationTable.php">
+                    <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false">
                         <i class="material-icons">apps</i><span>Information Table</span></a>
+
                 </li>
                 <li class="dropdown">
                     <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
@@ -74,21 +76,24 @@ session_start();
                         </li>
                     </ul>
                 </li>
+
+                <li class="dropdown">
+                    <a href="./DynamicForm.html">
+                        <i class="material-icons">border_color</i><span>Add Articles</span>
+                    </a>
+                </li>
                 <div class="small-screen navbar-display">
                     <li class="d-lg-none d-md-block d-xl-none d-sm-block">
                         <a href="#"><i class="material-icons">settings</i><span>setting</span></a>
                     </li>
                 </div>
 
-
-                <li class="dropdown">
-                    <a href="./DynamicForm.html">
-                        <i class="material-icons">border_color</i><span>Add Articles</span></a>
-                </li>
+                <!-- <a href="./DynamicForm.html">test</a> -->
                 <li class="dropdown">
                     <a href="logOut.php" data-toggle="collapse" aria-expanded="false"><i class=" material-icons bi bi-box-arrow-in-left">
                         </i><span>Log Out</span></a>
                 </li>
+
 
             </ul>
 
@@ -124,95 +129,79 @@ session_start();
 
             <div class="main-content">
 
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header">
-                                <div class="icon icon-warning">
-                                    <span class="material-icons">equalizer</span>
-                                </div>
+                <h4 class="card-title">Information Table</h4>
+                <p class="category">New articles on 2023</p>
+                <table id="data-table" class="display dataTable" style="width: 100%" aria-describedby="example_info">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Date</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="odd">
+                        <?php
+                        $articles = article::getAll();
+                        while ($row = $articles->fetch(PDO::FETCH_ASSOC)) {
+                            echo "<tr>";
+                            echo "<th>" . $row["Title"] . "</th>";
+                            echo "<th>" . $row["admin_name"] . "</th>";
+                            echo "<th>" . $row["Publication_date"] . "</th>";
+                            echo "<th>" . $row["category_name"] . "</th>";
+                            echo "<th>" . $row["Description"] . "</th>";
+                            echo '<td>
+                            <div class="d-flex fs-3">
+                                <a href="#modal-city" data-bs-toggle="modal" class="btn btn-warning me-3" onclick="edit()"><i class="bi bi-pencil-square users-icon"></i></a>
+                                <a href="" class="btn btn-danger text-dark"><i class="bi bi-trash3-fill users-icon"></i></a>
+                                <a href="" class="btn btn-success text-dark me-3"><i class="bi bi-eye-fill"></i></a>
                             </div>
-                            <div class="card-content">
-                                <p class="category"><strong>Writers</strong></p>
-                                <h3 class="card-title">70,340</h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons text-info">info</i>
-                                    <a href="#pablo">See detailed report</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </td>';
+                            // echo "<td><a id=" . $row["id"] . " onClick='edit(this)' data-bs-toggle='modal' data-bs-target='#Modal' class=' btn btn-primary'>Edit</a></td>";
+                            // echo "<td><a id=" . $row["id"] . " onClick='remove(this)' name='delete_btn' class='btn btn-danger'>Delete</a></td>";
+                            // echo "<td><a 'id=" . $row["id"] . "' class='btn btn-success'>View</a></td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
 
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header">
-                                <div class="icon icon-success">
-                                    <span class="material-icons">
-                                        attach_money
-                                    </span>
-
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <p class="category"><strong>Articles</strong></p>
-                                <h3 class="card-title">23,100</h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">date_range</i> Weekly sales
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="card card-stats">
-                            <div class="card-header">
-                                <div class="icon icon-info">
-                                    <span class="material-icons">
-                                        follow_the_signs
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="card-content">
-                                <p class="category"><strong>Followers</strong></p>
-                                <h3 class="card-title">+245</h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">update</i> Just Updated
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <footer class="footer">
-                    <p class="copyright d-flex justify-content-end"> &copy 2023 Design by Fatimezzahra DARIM
-                    </p>
-                </footer>
+                </table>
 
             </div>
-
-
-
         </div>
+    </div>
+
+    <footer class="footer">
+        <p class="copyright d-flex justify-content-end"> &copy 2023 Design by Fatimezzahra DARIM
+        </p>
+    </footer>
+
     </div>
 
 
 
+    </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js" integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function() {
+            $("#data-table").DataTable({
+                scrollX: true,
+                info: false,
+                responsive: true,
+            });
+        });
+    </script>
 
 
 
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery-3.3.1.slim.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-3.3.1.min.js"></script>
+
+
 
 
     <script type="text/javascript">
@@ -228,7 +217,12 @@ session_start();
 
         });
     </script>
-
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="js/jquery-3.3.1.slim.min.js"></script> -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- <script src="js/jquery-3.3.1.min.js"></script> -->
 
 
 </body>

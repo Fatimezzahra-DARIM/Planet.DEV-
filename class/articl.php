@@ -9,16 +9,37 @@
     public $category_name;
     public $description;
 
-    public static function create( $title, $description,$admin_name, $Publication_date, $category_name, $image){
+
+    function __construct($title,$description,$admin_name, $category_name, $image)
+    {
+        $this->title = $title;
+       
+        $this->description = $description;
+        $this->admin_name = $admin_name;
+        $this->image = $image;
+        $this->category_name = $category_name;
+    }
+    public function create(){
         global $conn;
-        $query = "INSERT INTO `articl` (`Title`, `Publication_date`, `Image`, `admin_name`, `category_name`, `Description`) VALUES ('$title', '$Publication_date', '$image', '$admin_name', '$category_name', '$description');";
+        $query = "INSERT INTO `articl` (`Title`, `Publication_date`, `Image`, `admin_name`, `category_name`, `Description`) VALUES (?,SYSDATE(),?,?,?,?);";
         $stmt = $conn->prepare($query);
-        if($stmt->execute()){
-            $_SESSION["articleMessage-success"] = "Article has been created successfully!";
-            header("location: ../index.php");
+        $result = $stmt->execute(
+            [   
+                $this->title,
+                $this->image,
+                $this->admin_name,
+                $this->category_name,
+                $this->description
+            ]
+        );
+        if($result){
+            // $_SESSION["articleMessage-success"] = "Article has been created successfully!";
+            // header("location: ../index.php");
+            echo"gooooood job";
         }else{
-            $_SESSION["articleMessage-field"] = "Sorry something went wrong.";
-            header("location: ../index.php");
+            // $_SESSION["articleMessage-field"] = "Sorry something went wrong.";
+            // header("location: ../index.php");
+            echo"repeat you can do it";
         }
     }
     public static function update($id, $title, $description, $admin_name,$Publication_date,$category_name,$image){
