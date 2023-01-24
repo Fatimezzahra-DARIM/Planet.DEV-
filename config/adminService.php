@@ -23,7 +23,4 @@ require_once "DbConnection.php";
         header("location: ../public/login.php");
         }
     }
-// function cuntAdmins()
-// {
-//     echo (user::countAdmins());
-// }
+

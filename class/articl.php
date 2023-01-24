@@ -107,6 +107,16 @@ require_once "../config/DbConnection.php";
 
         return $stmt;
     }
+    public static function countArticls()
+    {
+        global $conn;
+        $stmt = $conn->query("SELECT count(*) FROM articl ");
+
+        $res = $stmt->fetchColumn();
+
+        return $res;
+        // var_dump($res);
+    }
 }
 
 

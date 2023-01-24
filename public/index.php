@@ -1,6 +1,7 @@
 <?php
 require_once "../config/DbConnection.php";
 include_once "../config/adminService.php";
+include_once "../class/articl.php";
 if (!isset($_SESSION["id"])) {
     header("location: login.php");
 }
@@ -66,14 +67,8 @@ if (!isset($_SESSION["id"])) {
                     <a href="logOut.php?logout" name="logOut_btn"><i class=" material-icons bi bi-box-arrow-in-left">
                         </i><span>Log Out</span></a>
                 </li>
-
             </ul>
-
-
         </nav>
-
-
-
         <!-- Page Content  -->
         <div id="content">
 
@@ -111,7 +106,7 @@ if (!isset($_SESSION["id"])) {
                             </div>
                             <div class="card-content">
                                 <p class="category"><strong>Writers</strong></p>
-                                <h3 class="card-title">12345678</h3>
+                                <h3 class="card-title"><?php echo user::countAdmins() ?></h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -134,7 +129,7 @@ if (!isset($_SESSION["id"])) {
                             </div>
                             <div class="card-content">
                                 <p class="category"><strong>Articles</strong></p>
-                                <h3 class="card-title">23,100</h3>
+                                <h3 class="card-title"><?php echo article::countArticls() ?></h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">

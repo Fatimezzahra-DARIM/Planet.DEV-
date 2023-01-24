@@ -28,12 +28,12 @@
     public static function countAdmins()
     {
         global $conn;
-        $stmt = $conn->query("SELECT * FROM admin ");
+        $stmt = $conn->query("SELECT count(*) FROM admin ");
         
-        $res = $stmt->rowCount();
+        $res = $stmt->fetchColumn();
 
-        // return $res;
-        var_dump($res);
+        return $res;
+        // var_dump($res);
     }
    
     }
