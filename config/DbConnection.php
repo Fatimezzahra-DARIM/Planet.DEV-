@@ -1,4 +1,5 @@
 <?php
+session_start();
     class DBConnection {
         public $host = "localhost" ;
         public $user = "root" ;

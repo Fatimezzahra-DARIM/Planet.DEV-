@@ -1,7 +1,7 @@
 <?php
 require_once "DbConnection.php";
     require_once "../class/admin.php";
-     session_start();
+   
    
     if(isset($_POST["login_btn"]))        loginChecker();
 
@@ -13,11 +13,17 @@ require_once "DbConnection.php";
         $query = "SELECT * FROM admin WHERE `email` = '$email' AND `password` = '$password'";
         $stmt = $conn->prepare($query);
         $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if ($stmt->rowCount() == 1) {
-            $newUser = new user($result[0]["id"], $result[0]["admin_name"], $result[0]["email"], $result[0]["password"]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($result) {
+            $newUser = new user($result["admin_id"], $result["admin_name"], $result["Email"], $result["Password"]);
             $newUser -> login();
+        header("location: ../public/index.php");
         } else {
             $_SESSION["loginMessage-field"] = "Sorry email or password is incorrect";
+        header("location: ../public/login.php");
         }
     }
+// function cuntAdmins()
+// {
+//     echo (user::countAdmins());
+// }

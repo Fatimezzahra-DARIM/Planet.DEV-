@@ -1,5 +1,7 @@
 <?php
 
+require_once "../config/DbConnection.php";
+
  class article {
     public $id;
     public $title;
@@ -19,6 +21,22 @@
         $this->image = $image;
         $this->category_name = $category_name;
     }
+
+    public static function getCategories()
+    {
+        global $conn;
+        $query = 'SELECT * FROM category';
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $data  ;
+    
+    }
+       
+    
+       
+    
+    
     public function create(){
         global $conn;
         $query = "INSERT INTO `articl` (`Title`, `Publication_date`, `Image`, `admin_name`, `category_name`, `Description`) VALUES (?,SYSDATE(),?,?,?,?);";
@@ -42,16 +60,31 @@
             echo"repeat you can do it";
         }
     }
-    public static function update($id, $title, $description, $admin_name,$Publication_date,$category_name,$image){
+    public static function update($id, $title, $description,$category_name,$image){
         global $conn;
-        $query = "UPDATE `articl` SET `Title`='$title',`Description`='$description',`admin_name`='$admin_name',`Publication_date`='$Publication_date',`category_name`='$category_name',`Image`='$image' WHERE `id` = $id";
+        $query = "UPDATE `articl` SET `Title`='$title',`Description`='$description',`category_name`='$category_name',`Image`='$image' WHERE `id` = $id";
         $stmt = $conn->prepare($query);
         if($stmt->execute()){
             $_SESSION["articleMessage-success"] = "Article has been updated successfully!";
-            header("location: ../index.php");
+            header("location: ../public/index.php");
+
         }else{
             $_SESSION["articleMessage-field"] = "Sorry something went wrong.";
-            header("location: ../index.php");
+            header("location: ../public/index.php");
+        }
+    }
+
+    public static function edit($id){
+        global $conn;
+        $query = "SELECT * FROM `articl` WHERE `id`=$id";
+        
+        $stmt = $conn->prepare($query);
+        if ($stmt->execute()) {
+            $row=$stmt->fetch(PDO::FETCH_ASSOC);
+            return $row;
+        } else {
+            $_SESSION["articleMessage-field"] = "Sorry something went wrong.";
+            header("location: ../public/index.php");
         }
     }
     public static function delete($id){
@@ -60,10 +93,10 @@
         $stmt = $conn->prepare($query);
         if($stmt->execute()){
             $_SESSION["articleMessage-success"] = "Article has been deleted successfully!";
-            header("location: ../index.php");
+            header("location: ../public/index.php");
         }else{
             $_SESSION["articleMessage-field"] = "Sorry something went wrong.";
-            header("location: ../index.php");
+            header("location: ../public/index.php");
         }
     }
     public static function getAll(){
@@ -75,4 +108,6 @@
         return $stmt;
     }
 }
+
+
 ?>

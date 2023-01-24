@@ -1,10 +1,6 @@
 <?php
-require_once "config/DbConnection.php";
-require_once "class/articl.php";
-session_start();
-// if (!isset($_SESSION["id"])) {
-//     header("location: login.php");
-// }
+require_once "../config/DbConnection.php";
+require_once "../class/articl.php";
 ?>
 
 <!doctype html>
@@ -18,9 +14,9 @@ session_start();
     <title>Planet.Dev
     </title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <!----css3---->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="../css/custom.css">
     <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,45 +46,25 @@ session_start();
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3><img src="img/logo.png" class="img-fluid" /><span>Planet Dev</span></h3>
+                <h3><img src="../img/logo.png" class="img-fluid" /><span>Planet Dev</span></h3>
             </div>
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="#" class="dashboard"><i class="material-icons">dashboard</i><span>Dashboard</span></a>
+                    <a href="index.php" class="dashboard"><i class="material-icons">dashboard</i><span>Dashboard</span></a>
                 </li>
                 <li class="dropdown">
                     <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false">
                         <i class="material-icons">apps</i><span>Information Table</span></a>
 
                 </li>
-                <li class="dropdown">
-                    <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="material-icons">extension</i><span>Categories</span></a>
-                    <ul class="collapse list-unstyled menu" id="pageSubmenu4">
-                        <li>
-                            <a href="#">Cloud</a>
-                        </li>
-                        <li>
-                            <a href="#">IA & Big data</a>
-                        </li>
-                        <li>
-                            <a href="#">Storage</a>
-                        </li>
-                    </ul>
-                </li>
+              
 
                 <li class="dropdown">
-                    <a href="./DynamicForm.html">
+                    <a href="./DynamicForm.php">
                         <i class="material-icons">border_color</i><span>Add Articles</span>
                     </a>
                 </li>
-                <div class="small-screen navbar-display">
-                    <li class="d-lg-none d-md-block d-xl-none d-sm-block">
-                        <a href="#"><i class="material-icons">settings</i><span>setting</span></a>
-                    </li>
-                </div>
-
-                <!-- <a href="./DynamicForm.html">test</a> -->
+                
                 <li class="dropdown">
                     <a href="logOut.php" data-toggle="collapse" aria-expanded="false"><i class=" material-icons bi bi-box-arrow-in-left">
                         </i><span>Log Out</span></a>
@@ -152,16 +128,14 @@ session_start();
                             echo "<th>" . $row["Publication_date"] . "</th>";
                             echo "<th>" . $row["category_name"] . "</th>";
                             echo "<th>" . $row["Description"] . "</th>";
-                            echo '<td>
-                            <div class="d-flex fs-3">
-                                <a href="#modal-city" data-bs-toggle="modal" class="btn btn-warning me-3" onclick="edit()"><i class="bi bi-pencil-square users-icon"></i></a>
-                                <a href="" class="btn btn-danger text-dark"><i class="bi bi-trash3-fill users-icon"></i></a>
-                                <a href="" class="btn btn-success text-dark me-3"><i class="bi bi-eye-fill"></i></a>
-                            </div>
-                        </td>';
-                            // echo "<td><a id=" . $row["id"] . " onClick='edit(this)' data-bs-toggle='modal' data-bs-target='#Modal' class=' btn btn-primary'>Edit</a></td>";
-                            // echo "<td><a id=" . $row["id"] . " onClick='remove(this)' name='delete_btn' class='btn btn-danger'>Delete</a></td>";
-                            // echo "<td><a 'id=" . $row["id"] . "' class='btn btn-success'>View</a></td>";
+                        ?><td>
+                                <div class="d-flex fs-3">
+                                    <a href="update.php?id=<?= $row["id"] ?>" data-bs-toggle="modal" class="btn btn-warning me-3" onclick=""><i class="bi bi-pencil-square users-icon"></i></a>
+                                    <a href="./config/articlService.php?id=<?= $row["id"] ?>" class="btn btn-danger text-dark"><i class="bi bi-trash3-fill users-icon"></i></a>
+                                    <a href="" class="btn btn-success text-dark me-3"><i class="bi bi-eye-fill"></i></a>
+                                </div>
+                            </td>
+                        <?php
                             echo "</tr>";
                         }
                         ?>
@@ -196,14 +170,6 @@ session_start();
         });
     </script>
 
-
-
-
-
-
-
-
-
     <script type="text/javascript">
         $(document).ready(function() {
             $('#sidebarCollapse').on('click', function() {
@@ -220,8 +186,8 @@ session_start();
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- <script src="js/jquery-3.3.1.slim.min.js"></script> -->
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
     <!-- <script src="js/jquery-3.3.1.min.js"></script> -->
 
 

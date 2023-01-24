@@ -1,10 +1,9 @@
 <?php
-require_once "config/DbConnection.php";
-require_once "class/articl.php";
-session_start();
-// if (!isset($_SESSION["id"])) {
-//     header("location: login.php");
-// }
+require_once "../config/DbConnection.php";
+include_once "../config/adminService.php";
+if (!isset($_SESSION["id"])) {
+    header("location: login.php");
+}
 ?>
 
 <!doctype html>
@@ -18,9 +17,9 @@ session_start();
     <title>Planet.Dev
     </title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <!----css3---->
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="../css/custom.css">
     <!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,44 +48,22 @@ session_start();
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3><img src="img/logo.png" class="img-fluid" /><span>Planet Dev</span></h3>
+                <h3><img src="../img/logo.png" class="img-fluid" /><span>Planet Dev</span></h3>
             </div>
             <ul class="list-unstyled components">
                 <li class="active">
                     <a href="#" class="dashboard"><i class="material-icons">dashboard</i><span>Dashboard</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="./InformationTable.php">
+                    <a href="InformationTable.php">
                         <i class="material-icons">apps</i><span>Information Table</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="material-icons">extension</i><span>Categories</span></a>
-                    <ul class="collapse list-unstyled menu" id="pageSubmenu4">
-                        <li>
-                            <a href="#">Cloud</a>
-                        </li>
-                        <li>
-                            <a href="#">IA & Big data</a>
-                        </li>
-                        <li>
-                            <a href="#">Storage</a>
-                        </li>
-                    </ul>
-                </li>
-                <div class="small-screen navbar-display">
-                    <li class="d-lg-none d-md-block d-xl-none d-sm-block">
-                        <a href="#"><i class="material-icons">settings</i><span>setting</span></a>
-                    </li>
-                </div>
-
-
-                <li class="dropdown">
-                    <a href="./DynamicForm.html">
+                    <a href="DynamicForm.php">
                         <i class="material-icons">border_color</i><span>Add Articles</span></a>
                 </li>
                 <li class="dropdown">
-                    <a href="logOut.php" data-toggle="collapse" aria-expanded="false"><i class=" material-icons bi bi-box-arrow-in-left">
+                    <a href="logOut.php?logout" name="logOut_btn"><i class=" material-icons bi bi-box-arrow-in-left">
                         </i><span>Log Out</span></a>
                 </li>
 
@@ -134,7 +111,7 @@ session_start();
                             </div>
                             <div class="card-content">
                                 <p class="category"><strong>Writers</strong></p>
-                                <h3 class="card-title">70,340</h3>
+                                <h3 class="card-title">12345678</h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
@@ -209,10 +186,10 @@ session_start();
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery-3.3.1.slim.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="../js/jquery-3.3.1.slim.min.js"></script>
+    <script src="../js/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
 
 
     <script type="text/javascript">

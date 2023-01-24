@@ -17,11 +17,28 @@
         }
 
         public function login(){
+           
             $_SESSION["id"] = $this->id;
             $_SESSION["admin_name"] = $this->admin_name;
             $_SESSION["email"] = $this->email;
             $_SESSION["password"] = $this->password;
             $_SESSION["loginMessage-success"] = "welcome back ". $this->admin_name;
-            header("location: ../index.php");
+        header("location: ../public/index.php");
         }
+    public static function countAdmins()
+    {
+        global $conn;
+        $stmt = $conn->query("SELECT * FROM admin ");
+        
+        $res = $stmt->rowCount();
+
+        // return $res;
+        var_dump($res);
     }
+   
+    }
+// function cuntAdmins()
+// {
+//     echo (user::countAdmins());
+// }
+
