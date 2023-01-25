@@ -57,16 +57,16 @@ require_once "../class/articl.php";
                         <i class="material-icons">apps</i><span>Information Table</span></a>
 
                 </li>
-              
+
 
                 <li class="dropdown">
                     <a href="./DynamicForm.php">
                         <i class="material-icons">border_color</i><span>Add Articles</span>
                     </a>
                 </li>
-                
+
                 <li class="dropdown">
-                    <a href="logOut.php" data-toggle="collapse" aria-expanded="false"><i class=" material-icons bi bi-box-arrow-in-left">
+                    <a href="logOut.php?logout" data-toggle="collapse" aria-expanded="false"><i class=" material-icons bi bi-box-arrow-in-left">
                         </i><span>Log Out</span></a>
                 </li>
 
@@ -111,7 +111,7 @@ require_once "../class/articl.php";
                     <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Author</th>
+                            <th>Author ID</th>
                             <th>Date</th>
                             <th>Category</th>
                             <th>Description</th>
@@ -131,7 +131,7 @@ require_once "../class/articl.php";
                         ?><td>
                                 <div class="d-flex fs-3">
                                     <a href="update.php?id=<?= $row["id"] ?>" data-bs-toggle="modal" class="btn btn-warning me-3" onclick=""><i class="bi bi-pencil-square users-icon"></i></a>
-                                    <a href="./config/articlService.php?id=<?= $row["id"] ?>" class="btn btn-danger text-dark"><i class="bi bi-trash3-fill users-icon"></i></a>
+                                    <a href="../config/articlService.php?  id=<?= $row["id"] ?>" class="btn btn-danger text-dark"><i class="bi bi-trash3-fill users-icon"></i></a>
                                     <a href="" class="btn btn-success text-dark me-3"><i class="bi bi-eye-fill"></i></a>
                                 </div>
                             </td>

@@ -1,6 +1,6 @@
 <?php
 include_once "../config/getConfig.php";
-                        
+
 
 ?>
 
@@ -14,54 +14,60 @@ include_once "../config/getConfig.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="../asset/parsley/parsley.css">
+    <script src="../asset/parsley/jquery.js"></script>
+    <script src="../asset/parsley/parsley.min.js"></script>
     <title>Dynamique Form</title>
 </head>
 
 <body>
     <!-- Form -->
-    <div class="modal-body col-5 m-auto p-2">
-        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Add Articl</h1>
-        <form id="articl" name="articl" enctype="multipart/form-data" action="../config/articlService.php" method="POST">
-            <div id="articles" class="py-3 px-1 border-dark rounded-3 border-2">
-                <div id="article">
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="title" class="form-control" name="Title[]" id="title-addArticl">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Description</label>
+    <div class="row">
+        <h1 class="modal-title fs-5 d-flex justify-content-center" id="exampleModalLabel">Add Articl</h1>
+    </div>
+    <div class="row">
+        <div class="modal-body col-5 d-flex justify-content-center ">
+            <form data-parsley-validate id="articl" name="articl" enctype="multipart/form-data" action="../config/articlService.php" method="POST">
+                <div id="articles" class="py-3 px-1 border-dark rounded-3 border-2">
+                    <div id="article">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="title" class="form-control" name="Title[]" id="title-addArticl" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
 
-                        <textarea name="Description[]" id="edittext" class="form-control mb-3 text-left " placeholder="The article text" style="height: 20rem; ">
+                            <textarea name="Description[]" id="edittext" class="form-control mb-3 text-left " placeholder="The article text" style="height: 20rem; " required>
                                     </textarea>
-                    </div>
+                        </div>
 
-                    <div class="form-control mb-3">
-                        <label for="title" class="form-label">IMG</label>
-                        <!-- <label for="file-upload" class="custom-file-upload "></label> -->
-                        <input id="file-upload" name="img[]" type="file">
-                    </div>
+                        <div class="form-control mb-3">
+                            <label for="title" class="form-label">IMG</label>
+                            <input id="file-upload" name="img[]" type="file">
+                        </div>
 
-                    <div class="">
-                        <label for="categoryName" class="form-label">Category</label>
-                        <select id="categoryName" name="category_name[]" class="form-control mb-3">
-                            <?php
-                            foreach ($data as $row) :
-                            ?>
+                        <div class="">
+                            <label for="categoryName" class="form-label">Category</label>
+                            <select id="categoryName" name="category_name[]" class="form-control mb-3">
+                                <?php
+                                foreach ($data as $row) :
+                                ?>
 
-                                <option value="<?= $row['category_name'] ?>"><?= $row['category_name'] ?></option>
-                            <?php endforeach; ?>
-                        </select>
+                                    <option value="<?= $row['category_name'] ?>"><?= $row['category_name'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="modal-footer">
-                <button id="addForm" class="btn btn-primary me-3">
-                    add form
-                </button>
-                <button type="submit" class="btn btn-primary" id="send" name="create_btn">Create Articl</button>
-            </div>
-        </form>
+                <div class="modal-footer">
+                    <button id="addForm" class="btn btn-primary me-3">
+                        add form
+                    </button>
+                    <button type="submit" class="btn btn-primary" id="send" name="create_btn">Create Articl</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 

@@ -21,22 +21,7 @@ require_once "../config/DbConnection.php";
         $this->image = $image;
         $this->category_name = $category_name;
     }
-
-    public static function getCategories()
-    {
-        global $conn;
-        $query = 'SELECT * FROM category';
-        $stmt = $conn->prepare($query);
-        $stmt->execute();
-        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $data  ;
-    
-    }
-       
-    
-       
-    
-    
+ 
     public function create(){
         global $conn;
         $query = "INSERT INTO `articl` (`Title`, `Publication_date`, `Image`, `admin_name`, `category_name`, `Description`) VALUES (?,SYSDATE(),?,?,?,?);";
@@ -51,13 +36,13 @@ require_once "../config/DbConnection.php";
             ]
         );
         if($result){
-            // $_SESSION["articleMessage-success"] = "Article has been created successfully!";
-            // header("location: ../index.php");
-            echo"gooooood job";
+            
+            header("location: ../public/index.php");
+            // echo"gooooood job";
         }else{
-            // $_SESSION["articleMessage-field"] = "Sorry something went wrong.";
-            // header("location: ../index.php");
-            echo"repeat you can do it";
+           
+            header("location: ../public/index.php");
+            // echo"repeat you can do it";
         }
     }
     public static function update($id, $title, $description,$category_name,$image){
@@ -117,6 +102,16 @@ require_once "../config/DbConnection.php";
         return $res;
         // var_dump($res);
     }
+    public static function getCategories()
+    {
+        global $conn;
+        $query = 'SELECT * FROM category';
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+    }
+       
 }
 
 

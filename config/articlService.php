@@ -32,9 +32,6 @@ require_once "../class/articl.php";
    
 }
     function updateArticle(){
-        // echo $_POST["id"];
-        // echo "here " ;
-        // die() ; 
     $id = $_POST["id"];
     $title = $_POST["Title"];
     $description = $_POST["Description"];
@@ -55,6 +52,7 @@ require_once "../class/articl.php";
     function deleteArticle(){
         $id = $_GET["id"];
         article::delete($id);
+        // header("location:../../public/index.php");
     }
 
 
