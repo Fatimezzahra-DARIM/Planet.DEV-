@@ -1,18 +1,18 @@
-# Planet.DEV-
-## Exigences Fonctionnelles : 
+#planet.DEV-  
+## Functional Requirements:  
 *******************************************************
-***Authentification au dashboard.***    
-Lors de l'authentification il faut vérifier et valider les formulaires.  
--L'admin peut ajouter, modifier et supprimer les articles. 
--L'admin peut insérer un ou plusieurs ( limité sur 2 ou plus ) article en même temps. (Dynamic form) (Full dynamic form optionnel). 
--L'admin peut visualiser les statistiques : nombre des articles, nombre des utilisateurs, nombre des écrivains.  
--L'admin peut rechercher sur des articles (stack ou catégorie par exemple) et faire le tri. 
+***Dashboard authentication***  
+During authentication, the forms must be checked and validated.  
+-Admin can add, edit and delete items.  
+-The admin can insert one or more (limited to 2 or more) articles at the same time. (Dynamic form) (Full dynamic form optional).  
+-The admin can view the statistics: number of articles, number of users, number of writers.   
+-The admin can search on items (stack or category for example) and sort.  
 
-## Exigences Technologiques :  
-********************************************************
-***Concepts: Responsivité, POO***  
-**Conception et modélisation: **UML (diagramme de classe et usecase)  
--Langages de programmation: JavaScript,html, CSS, PHP  
--Framework & bibliothèque: Bootstrap / TailwindCSS  
--SGBD: MySQL  
--Outils: Git et GitHub  
+## Technological Requirements:  
+************************************************** ******
+***Concepts: Responsiveness, POO***  
+**Design and modeling: **UML (class diagram and usecase)  
+✔ Programming languages: JavaScript, html, CSS, PHP  
+✔ Framework & library: Bootstrap / TailwindCSS  
+✔ DBMS: MySQL  
+✔Tools: Git and GitHub  
