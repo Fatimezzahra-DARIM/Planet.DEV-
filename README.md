@@ -1,4 +1,3 @@
-#planet.DEV-  
 ## Functional Requirements:  
 *******************************************************
 ***Dashboard authentication***  
